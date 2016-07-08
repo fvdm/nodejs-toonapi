@@ -30,6 +30,42 @@ app.doError = function doError (message, err, res, callback) {
 
   error.statusCode = res && res.statusCode || null;
 
+  if (message === 'invalid response') {
+    if (body.match (/^<fault/)) {
+      error.message = 'API error';
+
+      body.replace (/<fault xmlns="https:\/\/quby.com"><description>(.+)<\/description><\/fault>$/, function (str, description) {
+        error.error = {
+          description
+        };
+
+        callback (error);
+      });
+
+      return;
+    }
+
+    if (body.match (/^<ams:fault/)) {
+      error.message = 'API error';
+      error.error = {};
+
+      body.replace (/<ams:fault xmlns:ams="[^"]+">(.+)<\/ams:fault>$/, function (str, xml) {
+        xml.replace (/<ams:([^>]+)>([^<]+)<\/ams:\1>/g, function (xmlstr, key, value) {
+          error.error [key] = value;
+        });
+
+        callback (error);
+      });
+
+      return;
+    }
+
+    // Unparsable data
+    error.error = body;
+    callback (error);
+    return;
+  }
+
   // Normal error
   error.error = err;
   callback (error);
@@ -51,15 +87,6 @@ function httpResponse (err, res, callback) {
 
   if (err) {
     return callback (err);
-  }
-
-  // Catch XML API error
-  if (data && data.match (/^<fault /)) {
-    data.replace (/<fault xmlns="https:\/\/quby.com"><description>(.+)<\/description><\/fault>$/, function (str, description) {
-      app.doError ('API error', description, res.statusCode, callback);
-    });
-
-    return null;
   }
 
   // Parse response
