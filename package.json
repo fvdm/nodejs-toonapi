@@ -1,0 +1,49 @@
+{
+  "author": {
+    "name": "Franklin van de Meent",
+    "email": "fr@nkl.in",
+    "url": "https://frankl.in"
+  },
+  "name": "toonapi",
+  "description": "Quby / Eneco Toon API (unofficial)",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fvdm/nodejs-toonapi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fvdm/nodejs-toonapi/issues"
+  },
+  "main": "index.js",
+  "tonicExampleFilename": "example.js",
+  "files": [
+    "example.js"
+  ],
+  "dependencies": {
+    "httpreq": "^0.4.22"
+  },
+  "devDependencies": {
+    "coveralls": "^2.11.9",
+    "dotest": "^1.12.4",
+    "eslint": "^3.0.1",
+    "istanbul": "^0.4.4"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "scripts": {
+    "test": "bash test.sh"
+  },
+  "keywords": [
+    "api",
+    "domotica",
+    "eneco",
+    "quby",
+    "smarthome",
+    "temperature",
+    "thermostat",
+    "toon",
+    "toonapi"
+  ],
+  "license": "Unlicense"
+}
