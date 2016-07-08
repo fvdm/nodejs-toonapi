@@ -50,6 +50,15 @@ function httpResponse (err, res, callback) {
     return callback (err);
   }
 
+  // Catch XML API error
+  if (data && data.match (/^<fault /)) {
+    data.replace (/<fault xmlns="https:\/\/quby.com"><description>(.+)<\/description><\/fault>$/, function (str, description) {
+      app.doError ('API error', description, res.statusCode, callback);
+    });
+
+    return;
+  }
+
   // Parse response
   try {
     data = JSON.parse (data);
