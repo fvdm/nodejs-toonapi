@@ -9,6 +9,8 @@ var toonapi = app (config);
 
 
 dotest.add ('Module interface', function (test) {
+  var agreements = toonapi && toonapi.agreements;
+
   var consumption = toonapi && toonapi.consumption;
   var electricity = consumption && consumption.electricity;
   var districtheat = consumption && consumption.districtheat;
@@ -27,7 +29,10 @@ dotest.add ('Module interface', function (test) {
   test ()
     .isFunction ('fail', 'exports', app)
     .isObject ('fail', 'interface', toonapi)
-    .isFunction ('fail', '.agreements', toonapi && toonapi.agreements)
+
+    .isObject ('fail', '.agreements', agreements)
+    .isFunction ('fail', '.agreements.list', agreements && agreements.list)
+    .isFunction ('fail', '.agreements.update', agreements && agreements.update)
 
     .isObject ('fail', '.consumption', consumption)
     .isObject ('fail', '.consumption.electricity', electricity)
@@ -71,7 +76,7 @@ dotest.add ('Module interface', function (test) {
 
 
 dotest.add ('Error: API error', function (test) {
-  toonapi.agreements (function (err, data) {
+  toonapi.agreements.update ('-', function (err, data) {
     test ()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'API error')
@@ -87,7 +92,7 @@ dotest.add ('Error: timeout', function (test) {
   config.timeout = 1;
   toonapi = app (config);
 
-  toonapi.agreements (function (err, data) {
+  toonapi.agreements.list (function (err, data) {
     test ()
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.code', err && err.code, 'TIMEOUT')
