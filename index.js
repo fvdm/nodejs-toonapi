@@ -56,7 +56,7 @@ function httpResponse (err, res, callback) {
       app.doError ('API error', description, res.statusCode, callback);
     });
 
-    return;
+    return null;
   }
 
   // Parse response
