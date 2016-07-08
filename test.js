@@ -1,7 +1,11 @@
 var dotest = require ('dotest');
 
 var config = {
-  timeout: process.env.APP_TIMEOUT
+  accessToken: process.env.ACCESSTOKEN || null,
+  clientId: process.env.CLIENT_ID || null,
+  clientSecret: process.env.CLIENT_SECRET || null,
+  redirectUri: process.env.REDIRECT_URI || null,
+  timeout: process.env.TIMEOUT || null
 };
 
 var app = require ('./');
