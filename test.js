@@ -70,4 +70,17 @@ dotest.add ('Module interface', function (test) {
 });
 
 
+dotest.add ('Error: API error', function (test) {
+  toonapi.agreements (function (err, data) {
+    test ()
+      .isError ('fail', 'err', err)
+      .isExactly ('fail', 'err.message', err && err.message, 'API error')
+      .isNumber ('fail', 'err.statusCode', err && err.statusCode)
+      .isNotEmpty ('fail', 'err.error', err && err.error)
+      .isUndefined ('fail', 'data', data)
+      .done ();
+  });
+});
+
+
 dotest.run ();
