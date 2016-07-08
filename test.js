@@ -83,4 +83,18 @@ dotest.add ('Error: API error', function (test) {
 });
 
 
+dotest.add ('Error: timeout', function (test) {
+  config.timeout = 1;
+  toonapi = app (config);
+
+  toonapi.agreements (function (err, data) {
+    test ()
+      .isError ('fail', 'err', err)
+      .isExactly ('fail', 'err.code', err && err.code, 'TIMEOUT')
+      .isUndefined ('fail', 'data', data)
+      .done ();
+  });
+});
+
+
 dotest.run ();
