@@ -14,6 +14,26 @@ var app = {
 
 
 /**
+ * Callback an error
+ *
+ * @callback callback
+ * @param message {string} - Error.message
+ * @param err {Error, mixed} - Error.error
+ * @param code {number} - Error.statusCode
+ * @param callback {function} - `function (err) {}`
+ * @returns {void}
+ */
+
+app.doError = function doError (message, err, code, callback) {
+  var error = new Error (message);
+
+  error.error = err;
+  error.statusCode = code;
+  callback (error);
+};
+
+
+/**
  * Process HTTP response for callback
  *
  * @callback callback
@@ -25,25 +45,22 @@ var app = {
 
 function httpResponse (err, res, callback) {
   var data = res && res.body || '';
-  var error = null;
 
   if (err) {
     return callback (err);
   }
 
+  // Parse response
   try {
     data = JSON.parse (data);
   } catch (e) {
-    e.statusCode = res.statusCode;
     e.body = data;
-    return callback (e);
+    return app.doError ('invalid response', e, res.statusCode, callback);
   }
 
+  // Catch JSON API error
   if (res.statusCode >= 300) {
-    error = new Error ('API error');
-    error.statusCode = res.statusCode;
-    error.error = data;
-    return callback (error);
+    return app.doError ('API error', data, res.statusCode, callback);
   }
 
   return callback (null, data);
