@@ -24,11 +24,14 @@ var app = {
  * @returns {void}
  */
 
-app.doError = function doError (message, err, code, callback) {
+app.doError = function doError (message, err, res, callback) {
   var error = new Error (message);
+  var body = res && res.body || '';
 
+  error.statusCode = res && res.statusCode || null;
+
+  // Normal error
   error.error = err;
-  error.statusCode = code;
   callback (error);
 };
 
@@ -64,12 +67,12 @@ function httpResponse (err, res, callback) {
     data = JSON.parse (data);
   } catch (e) {
     e.body = data;
-    return app.doError ('invalid response', e, res.statusCode, callback);
+    return app.doError ('invalid response', e, res, callback);
   }
 
   // Catch JSON API error
   if (res.statusCode >= 300) {
-    return app.doError ('API error', data, res.statusCode, callback);
+    return app.doError ('API error', data, res, callback);
   }
 
   return callback (null, data);
