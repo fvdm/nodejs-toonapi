@@ -81,6 +81,7 @@ dotest.add ('Error: API error', function (test) {
       .isError ('fail', 'err', err)
       .isExactly ('fail', 'err.message', err && err.message, 'API error')
       .isNumber ('fail', 'err.statusCode', err && err.statusCode)
+      .isObject ('fail', 'err.error', err && err.error)
       .isNotEmpty ('fail', 'err.error', err && err.error)
       .isUndefined ('fail', 'data', data)
       .done ();
