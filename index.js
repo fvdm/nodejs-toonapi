@@ -155,12 +155,14 @@ app.httpRequest = function httpRequest (props, callback) {
  */
 
 function setup (set) {
-  app.config.accessToken = set.accessToken || null;
-  app.config.clientId = set.clientId || null;
-  app.config.clientSecret = set.clientSecret || null;
-  app.config.endpoint = set.endpoint || app.config.endpoint;
-  app.config.redirectUri = set.redirectUri || null;
-  app.config.timeout = set.timeout || app.config.timeout;
+  if (set instanceof Object) {
+    app.config.accessToken = set.accessToken || null;
+    app.config.clientId = set.clientId || null;
+    app.config.clientSecret = set.clientSecret || null;
+    app.config.endpoint = set.endpoint || app.config.endpoint;
+    app.config.redirectUri = set.redirectUri || null;
+    app.config.timeout = set.timeout || app.config.timeout;
+  }
 
   return {
     oauth: require (app.root + '/lib/oauth.js') (app),
