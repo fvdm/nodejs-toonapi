@@ -58,6 +58,7 @@ app.doError = function doError (message, err, res, callback) {
       return;
     }
 
+    error.body = body;
     doCallback ();
     return;
   }
