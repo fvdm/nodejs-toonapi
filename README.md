@@ -9,6 +9,7 @@ Node.js package for Eneco/Quby Toon API (unofficial)
 [![Coverage Status](https://coveralls.io/repos/github/fvdm/nodejs-toonapi/badge.svg?branch=master)](https://coveralls.io/github/fvdm/nodejs-toonapi?branch=master)
 
 * [Node.js](https://nodejs.org)
+* [Package on npm](https://www.npmjs.com/package/toonapi)
 * [Toon API](https://www.toonapi.com)
 * [API documentation](https://www.toonapi.com/documentation)
 
