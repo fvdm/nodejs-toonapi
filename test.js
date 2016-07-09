@@ -64,6 +64,7 @@ dotest.add ('Module interface', function (test) {
 
     .isObject ('fail', '.oauth', oauth)
     .isFunction ('fail', '.oauth.getTokenFromCode', oauth && oauth.getTokenFromCode)
+    .isFunction ('fail', '.oauth.getTokenFromPassword', oauth && oauth.getTokenFromPassword)
     .isFunction ('fail', '.oauth.getToken', oauth && oauth.getToken)
     .isFunction ('fail', '.oauth.refreshToken', oauth && oauth.refreshToken)
     .isFunction ('fail', '.oauth.revokeToken', oauth && oauth.revokeToken)
@@ -82,6 +83,16 @@ dotest.add ('Module interface', function (test) {
 
 
 dotest.add ('Error: API error', function (test) {
+dotest.add ('Method oauth.getTokenFromPassword', function (test) {
+  toonapi.oauth.getTokenFromPassword (function (err, data) {
+    test (err)
+      .isObject ('fail', 'data', data)
+      .isExactly ('fail', 'data.token_type', data && data.token_type, 'bearer')
+      .done ();
+  });
+});
+
+
   toonapi.agreements.update ('-', function (err, data) {
     test ()
       .isError ('fail', 'err', err)
