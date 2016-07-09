@@ -20,7 +20,7 @@ app.devices = require (app.root + '/lib/devices.js') (app);
 app.display = require (app.root + '/lib/display.js') (app);
 app.pushEvent = require (app.root + '/lib/pushEvent.js') (app);
 app.temperature = require (app.root + '/lib/temperature.js') (app);
-  
+
 
 /**
  * Callback an error
