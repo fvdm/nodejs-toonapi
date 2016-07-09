@@ -58,20 +58,8 @@ app.doError = function doError (message, err, res, callback) {
       return;
     }
 
-    // API error - xml <ams:fault>
-    if (body.match (/^<ams:fault/)) {
-      error.message = 'API error';
-      error.error = {};
-
-      body.replace (/<ams:fault xmlns:ams="[^"]+">(.+)<\/ams:fault>$/, function (str, xml) {
-        xml.replace (/<ams:([^>]+)>([^<]+)<\/ams:\1>/g, function (xmlstr, key, value) {
-          error.error [key] = value;
-        });
-      });
-
-      doCallback ();
-      return;
-    }
+    doCallback ();
+    return;
   }
 
   // Normal error
