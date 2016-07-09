@@ -75,7 +75,6 @@ dotest.add ('Module interface', function (test) {
     .isObject ('fail', '.temperature.states', states)
     .isFunction ('fail', '.temperature.states.list', states && states.list)
     .isFunction ('fail', '.temperature.states.update', states && states.update)
-    .isFunction ('fail', '.temperature.update', temperature && temperature.update)
     .done ();
 });
 
@@ -126,6 +125,13 @@ dotest.add ('Method display.status', function (test) {
       .isNumber ('warn', 'data.thermostatInfo.currentTemp', thermos && thermos.currentTemp)
       .done ();
   });
+});
+
+
+dotest.add ('Method temperature.update - without scale', function (test) {
+  test ()
+    .warn ('Not implemented')
+    .done ();
 });
 
 
