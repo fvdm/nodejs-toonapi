@@ -107,6 +107,20 @@ dotest.add ('Method oauth.refreshToken', function (test) {
 });
 
 
+dotest.add ('Method oauth.revokeToken', function (test) {
+  toonapi.oauth.revokeToken (config.accessToken, function (err, data) {
+    var revRefresh = data && data.revokedrefreshtoken;
+    var revAccess = data && data.revokedaccesstoken;
+
+    test (err)
+      .isObject ('fail', 'data', data)
+      .isExactly ('fail', 'data.revokedrefreshtoken', revRefresh, config.refreshToken)
+      .isExactly ('fail', 'data.revokedaccesstoken', revAccess, config.accessToken)
+      .done ();
+  });
+});
+
+
 dotest.add ('Method oauth.getTokenFromCode', function (test) {
   test ()
     .warn ('Not implemented')
