@@ -94,6 +94,20 @@ dotest.add ('Method oauth.getTokenFromPassword', function (test) {
 });
 
 
+dotest.add ('Method agreements.list', function (test) {
+  toonapi.agreements.list (function (err, data) {
+    var item = data && data[0];
+
+    test (err)
+      .isArray ('fail', 'data', data)
+      .isNotEmpty ('fail', 'data', data)
+      .isObject ('fail', 'data[0]', item)
+      .isExactly ('fail', 'data[0].city', item && item.city, 'AMSTERDAM')
+      .done ();
+  });
+});
+
+
 dotest.add ('Method agreements.update', function (test) {
   test ()
     .warn ('Not implemented')
