@@ -4,8 +4,10 @@ var config = {
   accessToken: process.env.ACCESSTOKEN || null,
   clientId: process.env.CLIENT_ID || null,
   clientSecret: process.env.CLIENT_SECRET || null,
+  password: process.env.CLIENT_PASSWORD || null,
   redirectUri: process.env.REDIRECT_URI || null,
-  timeout: process.env.TIMEOUT || null
+  timeout: process.env.TIMEOUT || null,
+  username: process.env.CLIENT_USERNAME || null
 };
 
 var app = require ('./');
