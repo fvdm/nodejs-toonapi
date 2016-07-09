@@ -82,6 +82,9 @@ dotest.add ('Module interface', function (test) {
 
 dotest.add ('Method oauth.getTokenFromPassword', function (test) {
   toonapi.oauth.getTokenFromPassword (function (err, data) {
+    config.accessToken = data && data.access_token;
+    config.refreshToken = data && data.refresh_token;
+
     test (err)
       .isObject ('fail', 'data', data)
       .isExactly ('fail', 'data.token_type', data && data.token_type, 'bearer')
