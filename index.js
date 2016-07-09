@@ -28,9 +28,10 @@ app.doError = function doError (message, err, res, callback) {
   var error = new Error (message);
   var body = res && res.body || '';
 
-  error.statusCode = res && res.statusCode || null;
-
   if (message === 'invalid response') {
+    error.statusCode = res.statusCode;
+    error.headers = res.headers;
+
     if (body.match (/^<fault/)) {
       error.message = 'API error';
 
@@ -59,11 +60,11 @@ app.doError = function doError (message, err, res, callback) {
 
       return;
     }
+  }
 
-    // Unparsable data
-    error.error = body;
-    callback (error);
-    return;
+  if (message === 'API error') {
+    error.statusCode = res.statusCode;
+    error.headers = res.headers;
   }
 
   // Normal error
