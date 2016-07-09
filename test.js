@@ -63,9 +63,7 @@ dotest.add ('Module interface', function (test) {
     .isFunction ('fail', '.display', display && display.status)
 
     .isObject ('fail', '.oauth', oauth)
-    .isFunction ('fail', '.oauth.getTokenFromCode', oauth && oauth.getTokenFromCode)
     .isFunction ('fail', '.oauth.getTokenFromPassword', oauth && oauth.getTokenFromPassword)
-    .isFunction ('fail', '.oauth.getToken', oauth && oauth.getToken)
     .isFunction ('fail', '.oauth.refreshToken', oauth && oauth.refreshToken)
     .isFunction ('fail', '.oauth.revokeToken', oauth && oauth.revokeToken)
 
@@ -89,6 +87,20 @@ dotest.add ('Method oauth.getTokenFromPassword', function (test) {
       .isExactly ('fail', 'data.token_type', data && data.token_type, 'bearer')
       .done ();
   });
+});
+
+
+dotest.add ('Method oauth.getTokenFromCode', function (test) {
+  test ()
+    .warn ('Not implemented')
+    .done ();
+});
+
+
+dotest.add ('Method oauth.getTokenImplicit', function (test) {
+  test ()
+    .warn ('Not implemented')
+    .done ();
 });
 
 
