@@ -148,6 +148,17 @@ app.httpRequest = function httpRequest (props, callback) {
   }
 
   function doResponse (err, res) {
+    if (props.path === '/revoke') {
+      if (res.statusCode === 200) {
+        callback (null, {
+          revokedaccesstoken: res.headers.revokedaccesstoken,
+          revokedrefreshtoken: res.headers.revokedrefreshtoken
+        });
+
+        return;
+      }
+    }
+
     httpResponse (err, res, callback);
   }
 
