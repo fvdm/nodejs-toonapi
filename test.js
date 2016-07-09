@@ -82,7 +82,6 @@ dotest.add ('Module interface', function (test) {
 });
 
 
-dotest.add ('Error: API error', function (test) {
 dotest.add ('Method oauth.getTokenFromPassword', function (test) {
   toonapi.oauth.getTokenFromPassword (function (err, data) {
     test (err)
@@ -93,6 +92,7 @@ dotest.add ('Method oauth.getTokenFromPassword', function (test) {
 });
 
 
+dotest.add ('Error: API error - xml <ams:fault>', function (test) {
   toonapi.agreements.update ('-', function (err, data) {
     test ()
       .isError ('fail', 'err', err)
