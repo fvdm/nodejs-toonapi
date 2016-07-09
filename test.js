@@ -39,7 +39,6 @@ dotest.add ('Module interface', function (test) {
 
     .isObject ('fail', '.agreements', agreements)
     .isFunction ('fail', '.agreements.list', agreements && agreements.list)
-    .isFunction ('fail', '.agreements.update', agreements && agreements.update)
 
     .isObject ('fail', '.consumption', consumption)
     .isObject ('fail', '.consumption.electricity', electricity)
@@ -91,6 +90,13 @@ dotest.add ('Method oauth.getTokenFromPassword', function (test) {
       .isExactly ('fail', 'data.token_type', data && data.token_type, 'bearer')
       .done ();
   });
+});
+
+
+dotest.add ('Method agreements.update', function (test) {
+  test ()
+    .warn ('Not implemented')
+    .done ();
 });
 
 
