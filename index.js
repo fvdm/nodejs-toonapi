@@ -28,10 +28,23 @@ app.doError = function doError (message, err, res, callback) {
   var error = new Error (message);
   var body = res && res.body || '';
 
-  if (message === 'invalid response') {
+  function doCallback () {
+    callback && callback (error);
+  }
+
+  // HTTP response error
+  if (message === 'invalid response' || message === 'API error') {
     error.statusCode = res.statusCode;
     error.headers = res.headers;
 
+    // API error - json
+    if (!(err instanceof Error)) {
+      error.error = err;
+      doCallback ();
+      return;
+    }
+
+    // API error - xml <fault>
     if (body.match (/^<fault/)) {
       error.message = 'API error';
 
@@ -39,13 +52,13 @@ app.doError = function doError (message, err, res, callback) {
         error.error = {
           description
         };
-
-        callback (error);
       });
 
+      doCallback ();
       return;
     }
 
+    // API error - xml <ams:fault>
     if (body.match (/^<ams:fault/)) {
       error.message = 'API error';
       error.error = {};
@@ -54,22 +67,16 @@ app.doError = function doError (message, err, res, callback) {
         xml.replace (/<ams:([^>]+)>([^<]+)<\/ams:\1>/g, function (xmlstr, key, value) {
           error.error [key] = value;
         });
-
-        callback (error);
       });
 
+      doCallback ();
       return;
     }
   }
 
-  if (message === 'API error') {
-    error.statusCode = res.statusCode;
-    error.headers = res.headers;
-  }
-
   // Normal error
   error.error = err;
-  callback (error);
+  doCallback ();
 };
 
 
