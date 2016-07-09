@@ -124,6 +124,7 @@ dotest.add ('Error: API error - xml <fault>', function (test) {
 
 
 dotest.add ('Error: timeout', function (test) {
+  config.endpoint = 'https://api.toonapi.com';
   config.timeout = 1;
   toonapi = app (config);
 
