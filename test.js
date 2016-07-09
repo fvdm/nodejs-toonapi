@@ -115,6 +115,20 @@ dotest.add ('Method agreements.update', function (test) {
 });
 
 
+dotest.add ('Method display.status', function (test) {
+  toonapi.display.status (function (err, data) {
+    var thermos = data && data.thermostatInfo;
+
+    test (err)
+      .isObject ('fail', 'data', data)
+      .isExactly ('fail', 'data.success', data && data.success, true)
+      .isObject ('fail', 'data.thermostatInfo', thermos)
+      .isNumber ('warn', 'data.thermostatInfo.currentTemp', thermos && thermos.currentTemp)
+      .done ();
+  });
+});
+
+
 dotest.add ('Method oauth.refreshToken', function (test) {
   toonapi.oauth.refreshToken (config.refreshToken, function (err, data) {
     config.accessToken = data && data.access_token;
