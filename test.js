@@ -60,7 +60,7 @@ dotest.add ('Module interface', function (test) {
     .isFunction ('fail', '.devices.update', devices && devices.update)
 
     .isObject ('fail', '.display', display)
-    .isFunction ('fail', '.display', display && display.status)
+    .isFunction ('fail', '.display.status', display && display.status)
 
     .isObject ('fail', '.oauth', oauth)
     .isFunction ('fail', '.oauth.getTokenFromPassword', oauth && oauth.getTokenFromPassword)
