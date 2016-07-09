@@ -6,6 +6,7 @@ var config = {
   clientSecret: process.env.CLIENT_SECRET,
   password: process.env.CLIENT_PASSWORD,
   redirectUri: process.env.REDIRECT_URI,
+  refreshToken: process.env.REFRESHTOKEN,
   timeout: process.env.TIMEOUT,
   username: process.env.CLIENT_USERNAME
 };
@@ -82,6 +83,19 @@ dotest.add ('Module interface', function (test) {
 
 dotest.add ('Method oauth.getTokenFromPassword', function (test) {
   toonapi.oauth.getTokenFromPassword (function (err, data) {
+    config.accessToken = data && data.access_token;
+    config.refreshToken = data && data.refresh_token;
+
+    test (err)
+      .isObject ('fail', 'data', data)
+      .isExactly ('fail', 'data.token_type', data && data.token_type, 'bearer')
+      .done ();
+  });
+});
+
+
+dotest.add ('Method oauth.refreshToken', function (test) {
+  toonapi.oauth.refreshToken (config.refreshToken, function (err, data) {
     config.accessToken = data && data.access_token;
     config.refreshToken = data && data.refresh_token;
 
