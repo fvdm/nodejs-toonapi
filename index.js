@@ -12,6 +12,15 @@ var app = {
   }
 };
 
+// Load methods
+app.oauth = require (app.root + '/lib/oauth.js') (app);
+app.agreements = require (app.root + '/lib/agreements.js') (app);
+app.consumption = require (app.root + '/lib/consumption.js') (app);
+app.devices = require (app.root + '/lib/devices.js') (app);
+app.display = require (app.root + '/lib/display.js') (app);
+app.pushEvent = require (app.root + '/lib/pushEvent.js') (app);
+app.temperature = require (app.root + '/lib/temperature.js') (app);
+  
 
 /**
  * Callback an error
@@ -179,15 +188,7 @@ function setup (set) {
     app.config.username = set.username;
   }
 
-  return {
-    oauth: require (app.root + '/lib/oauth.js') (app),
-    agreements: require (app.root + '/lib/agreements.js') (app),
-    consumption: require (app.root + '/lib/consumption.js') (app),
-    devices: require (app.root + '/lib/devices.js') (app),
-    display: require (app.root + '/lib/display.js') (app),
-    pushEvent: require (app.root + '/lib/pushEvent.js') (app),
-    temperature: require (app.root + '/lib/temperature.js') (app)
-  };
+  return app;
 }
 
 module.exports = setup;
