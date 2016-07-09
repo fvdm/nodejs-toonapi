@@ -106,6 +106,23 @@ dotest.add ('Method oauth.getTokenFromPassword', function (test) {
 });
 
 
+dotest.add ('Error: API error - xml <fault>', function (test) {
+  config.endpoint = 'https://api.toonapi.com/api';
+  toonapi = app (config);
+
+  toonapi.agreements.list (function (err, data) {
+    test ()
+      .isError ('fail', 'err', err)
+      .isExactly ('fail', 'err.message', err && err.message, 'API error')
+      .isNumber ('fail', 'err.statusCode', err && err.statusCode)
+      .isObject ('fail', 'err.error', err && err.error)
+      .isNotEmpty ('fail', 'err.error', err && err.error)
+      .isUndefined ('fail', 'data', data)
+      .done ();
+  });
+});
+
+
 dotest.add ('Error: timeout', function (test) {
   config.timeout = 1;
   toonapi = app (config);
