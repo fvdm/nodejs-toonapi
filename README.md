@@ -13,6 +13,14 @@ Node.js package for Eneco/Quby Toon API (unofficial)
 * [API documentation](https://www.toonapi.com/documentation)
 
 
+Beta notice
+-----------
+
+This package is not ready for production while
+it is in the v0.x.x version range.
+Once it's released as v1.0.0 or higher it is stable for production uses.
+
+
 Installation
 ------------
 
