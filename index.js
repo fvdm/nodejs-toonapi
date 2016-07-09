@@ -143,7 +143,7 @@ app.httpRequest = function httpRequest (props, callback) {
   options.headers.Accept = 'application/json';
   options.headers ['User-Agent'] = 'node/toonapi (https://github.com/fvdm/nodejs-toonapi)';
 
-  if (app.config.accessToken) {
+  if (!props.noauth && app.config.accessToken) {
     options.headers.Authorization = 'Bearer ' + app.config.accessToken;
   }
 
