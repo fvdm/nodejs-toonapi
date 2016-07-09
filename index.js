@@ -129,6 +129,10 @@ app.httpRequest = function httpRequest (props, callback) {
     headers: props.headers || {}
   };
 
+  if (!app.config.endpoint || !app.config.endpoint.match (/^https?:\/\/[\w\d\.]+/)) {
+    return app.doError ('endpoint missing', null, null, callback);
+  }
+
   options.headers.Accept = 'application/json';
   options.headers ['User-Agent'] = 'node/toonapi (https://github.com/fvdm/nodejs-toonapi)';
 
@@ -141,6 +145,7 @@ app.httpRequest = function httpRequest (props, callback) {
   }
 
   httpreq.doRequest (options, doResponse);
+  return null;
 };
 
 

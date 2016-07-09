@@ -150,4 +150,19 @@ dotest.add ('Error: timeout', function (test) {
 });
 
 
+dotest.add ('Error: endpoint missing', function (test) {
+  config.endpoint = '-';
+  config.timeout = 5000;
+  toonapi = app (config);
+
+  toonapi.agreements.list (function (err, data) {
+    test ()
+      .isError ('fail', 'err', err)
+      .isExactly ('fail', 'err.message', err && err.message, 'endpoint missing')
+      .isUndefined ('fail', 'data', data)
+      .done ();
+  });
+});
+
+
 dotest.run ();
