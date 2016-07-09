@@ -160,8 +160,10 @@ function setup (set) {
     app.config.clientId = set.clientId || null;
     app.config.clientSecret = set.clientSecret || null;
     app.config.endpoint = set.endpoint || app.config.endpoint;
+    app.config.password = set.password || null;
     app.config.redirectUri = set.redirectUri || null;
     app.config.timeout = set.timeout || app.config.timeout;
+    app.config.username = set.username || null;
   }
 
   return {
