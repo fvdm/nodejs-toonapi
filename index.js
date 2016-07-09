@@ -126,11 +126,11 @@ app.httpRequest = function httpRequest (props, callback) {
     parameters: props.params || null,
     json: props.json || null,
     timeout: props.timeout || app.config.timeout,
-    headers: {
-      'Accept': 'application/json',
-      'User-Agent': 'node/toonapi (https://github.com/fvdm/nodejs-toonapi)'
-    }
+    headers: props.headers || {}
   };
+
+  options.headers.Accept = 'application/json';
+  options.headers ['User-Agent'] = 'node/toonapi (https://github.com/fvdm/nodejs-toonapi)';
 
   if (app.config.accessToken) {
     options.headers.Authorization = 'Bearer ' + app.config.accessToken;
