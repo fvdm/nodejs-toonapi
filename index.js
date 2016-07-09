@@ -130,8 +130,8 @@ app.httpRequest = function httpRequest (props, callback) {
   var options = {
     method: props.method || 'GET',
     url: app.config.endpoint + props.path,
-    parameters: props.params || null,
-    json: props.json || null,
+    parameters: props.params,
+    json: props.json,
     timeout: props.timeout || app.config.timeout,
     headers: props.headers || {}
   };
@@ -167,15 +167,16 @@ app.httpRequest = function httpRequest (props, callback) {
  */
 
 function setup (set) {
-  if (set instanceof Object) {
-    app.config.accessToken = set.accessToken || null;
-    app.config.clientId = set.clientId || null;
-    app.config.clientSecret = set.clientSecret || null;
+  if (set && set instanceof Object) {
+    app.config.accessToken = set.accessToken;
+    app.config.clientId = set.clientId;
+    app.config.clientSecret = set.clientSecret;
     app.config.endpoint = set.endpoint || app.config.endpoint;
-    app.config.password = set.password || null;
-    app.config.redirectUri = set.redirectUri || null;
+    app.config.password = set.password;
+    app.config.redirectUri = set.redirectUri;
+    app.config.refreshToken = set.refreshToken;
     app.config.timeout = set.timeout || app.config.timeout;
-    app.config.username = set.username || null;
+    app.config.username = set.username;
   }
 
   return {

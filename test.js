@@ -1,13 +1,13 @@
 var dotest = require ('dotest');
 
 var config = {
-  accessToken: process.env.ACCESSTOKEN || null,
-  clientId: process.env.CLIENT_ID || null,
-  clientSecret: process.env.CLIENT_SECRET || null,
-  password: process.env.CLIENT_PASSWORD || null,
-  redirectUri: process.env.REDIRECT_URI || null,
-  timeout: process.env.TIMEOUT || null,
-  username: process.env.CLIENT_USERNAME || null
+  accessToken: process.env.ACCESSTOKEN,
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  password: process.env.CLIENT_PASSWORD,
+  redirectUri: process.env.REDIRECT_URI,
+  timeout: process.env.TIMEOUT,
+  username: process.env.CLIENT_USERNAME
 };
 
 var app = require ('./');
