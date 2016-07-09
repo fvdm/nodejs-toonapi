@@ -84,6 +84,7 @@ dotest.add ('Method oauth.getTokenFromPassword', function (test) {
   toonapi.oauth.getTokenFromPassword (function (err, data) {
     config.accessToken = data && data.access_token;
     config.refreshToken = data && data.refresh_token;
+    toonapi = app (config);
 
     test (err)
       .isObject ('fail', 'data', data)
