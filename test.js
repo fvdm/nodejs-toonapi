@@ -1,4 +1,5 @@
 var dotest = require ('dotest');
+var cache = {};
 
 var config = {
   accessToken: process.env.ACCESSTOKEN,
