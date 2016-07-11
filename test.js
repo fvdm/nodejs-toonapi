@@ -145,6 +145,18 @@ dotest.add ('Methods devices.list', function (test) {
 });
 
 
+dotest.add ('Method devices.device.get', function (test) {
+  var item = cache.devices && cache.devices[0];
+
+  toonapi.devices.device.get (item && item.uuid, function (err, data) {
+    test (err)
+      .isObject ('fail', 'data', data)
+      .isExactly ('fail', 'data.uuid', data && data.uuid, item && item.uuid)
+      .done ();
+  });
+});
+
+
 dotest.add ('Method temperature.update - without scale', function (test) {
   test ()
     .warn ('Not implemented')
