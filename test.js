@@ -129,7 +129,7 @@ dotest.add ('Method display.status', function (test) {
 
 
 dotest.add ('Methods devices.list', function (test) {
-  toonapi.devices.device (function (err, data) {
+  toonapi.devices.list (function (err, data) {
     var item = data && data [0];
 
     test (err)
