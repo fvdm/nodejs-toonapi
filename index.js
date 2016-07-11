@@ -138,9 +138,23 @@ app.httpRequest = function httpRequest (props, callback) {
     return app.doError ('endpoint missing', null, null, callback);
   }
 
-  options.headers.Accept = 'application/json';
-  options.headers ['User-Agent'] = 'node/toonapi (https://github.com/fvdm/nodejs-toonapi)';
+  // we need but don't have an accessToken
+  if (!props.noauth && !app.config.accessToken) {
+    app.oauth.getTokenFromPassword (function (err, token) {
+      if (err) {
+        return callback (err);
+      }
 
+      app.config.accessToken = token.access_token;
+      app.config.refreshToken = token.refresh_token;
+
+      app.httpRequest (props, callback);
+    });
+
+    return;
+  }
+
+  // we need and have an accessToken
   if (!props.noauth && app.config.accessToken) {
     options.headers.Authorization = 'Bearer ' + app.config.accessToken;
   }
@@ -160,7 +174,10 @@ app.httpRequest = function httpRequest (props, callback) {
     httpResponse (err, res, callback);
   }
 
+  options.headers.Accept = 'application/json';
+  options.headers ['User-Agent'] = 'node/toonapi (https://github.com/fvdm/nodejs-toonapi)';
   httpreq.doRequest (options, doResponse);
+
   return null;
 };
 
