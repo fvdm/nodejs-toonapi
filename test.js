@@ -128,6 +128,20 @@ dotest.add ('Method display.status', function (test) {
 });
 
 
+dotest.add ('Methods devices.list', function (test) {
+  toonapi.devices.device (function (err, data) {
+    var item = data && data [0];
+
+    test (err)
+      .isArray ('fail', 'data', data)
+      .isNotEmpty ('fail', 'data', data)
+      .isObject ('fail', 'data[0]', item)
+      .isNotEmpty ('fail', 'data[0]', item)
+      .done ();
+  });
+});
+
+
 dotest.add ('Method temperature.update - without scale', function (test) {
   test ()
     .warn ('Not implemented')
