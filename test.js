@@ -128,9 +128,9 @@ dotest.add ('Method display.status', function (test) {
 });
 
 
-dotest.add ('Methods devices.list', function (test) {
+dotest.add ('Method devices.list', function (test) {
   toonapi.devices.list (function (err, data) {
-    var item = data && data [0];
+    var item = data && data[0];
 
     cache.devices = data;
 
