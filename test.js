@@ -80,20 +80,6 @@ dotest.add ('Module interface', function (test) {
 });
 
 
-dotest.add ('Method oauth.getTokenFromPassword', function (test) {
-  toonapi.oauth.getTokenFromPassword (function (err, data) {
-    config.accessToken = data && data.access_token;
-    config.refreshToken = data && data.refresh_token;
-    toonapi = app (config);
-
-    test (err)
-      .isObject ('fail', 'data', data)
-      .isExactly ('fail', 'data.token_type', data && data.token_type, 'bearer')
-      .done ();
-  });
-});
-
-
 dotest.add ('Method agreements.list', function (test) {
   toonapi.agreements.list (function (err, data) {
     var item = data && data[0];
@@ -162,6 +148,20 @@ dotest.add ('Method temperature.update - without scale', function (test) {
   test ()
     .warn ('Not implemented')
     .done ();
+});
+
+
+dotest.add ('Method oauth.getTokenFromPassword', function (test) {
+  toonapi.oauth.getTokenFromPassword (function (err, data) {
+    config.accessToken = data && data.access_token;
+    config.refreshToken = data && data.refresh_token;
+    toonapi = app (config);
+
+    test (err)
+      .isObject ('fail', 'data', data)
+      .isExactly ('fail', 'data.token_type', data && data.token_type, 'bearer')
+      .done ();
+  });
 });
 
 
