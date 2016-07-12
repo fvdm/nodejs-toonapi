@@ -26,15 +26,15 @@ app.temperature = require (app.root + '/lib/temperature.js') (app);
  * Callback an error
  *
  * @callback callback
- * @param message {string} - Error.message
+ * @param msg {string} - Error.message
  * @param err {Error, mixed} - Error.error
  * @param code {number} - Error.statusCode
  * @param callback {function} - `function (err) {}`
  * @returns {void}
  */
 
-app.doError = function doError (message, err, res, callback) {
-  var error = new Error (message);
+app.doError = function doError (msg, err, res, callback) {
+  var error = new Error (msg);
   var body = res && res.body || '';
 
   function doCallback () {
@@ -42,7 +42,7 @@ app.doError = function doError (message, err, res, callback) {
   }
 
   // HTTP response error
-  if (message === 'invalid response' || message === 'API error') {
+  if (msg === 'invalid response' || msg === 'API error') {
     error.statusCode = res.statusCode;
     error.headers = res.headers;
 
