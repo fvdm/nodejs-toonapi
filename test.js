@@ -135,7 +135,8 @@ dotest.add ('Method devices.list', function (test) {
 dotest.add ('Method devices.update', function (test) {
   toonapi.devices.update (cache.devices, function (err, data) {
     test (err)
-      .isNotEmpty ('fail', 'data', data)
+      .isObject ('fail', 'data', data)
+      .isExactly ('fail', 'data.success', data && data.success, true)
       .done ();
   });
 });
