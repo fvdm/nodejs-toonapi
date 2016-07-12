@@ -54,7 +54,7 @@ app.doError = function doError (msg, err, res, callback) {
     }
 
     // API error - xml <fault>
-    if (body.match (/^<fault/)) {
+    if (body.match (/^<(amt:|ams:)?fault/)) {
       error.message = 'API error';
 
       body.replace (/<(amt:|ams:)?fault [^>]+>(<\1code>([^<]+)<\/\1code>)?(<\1message>([^<]+)<\/\1message>)?(<\1description>([^<]+)<\/\1description>)?<\/\1fault>$/, function (str0, str1, str2, code, str4, message, str6, description) {
