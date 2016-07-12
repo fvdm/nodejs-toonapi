@@ -1,3 +1,34 @@
+### 0.3.0 (2016-7-12)
+
+##### Documentation Changes
+
+* **readme:** Added link to npm package ([053cf96d](https://github.com/fvdm/nodejs-toonapi/commit/053cf96d1d3d195df768fe11c90afb4e7324d37a))
+
+##### New Features
+
+* **request:** Get accessToken when needed ([670d7e64](https://github.com/fvdm/nodejs-toonapi/commit/670d7e647cab709a249f1cc11c611a9d1436b85c))
+
+##### Bug Fixes
+
+* **errors:** Renamed message var ([86e4c7e1](https://github.com/fvdm/nodejs-toonapi/commit/86e4c7e16292d990ca7181ee2ca2c55a778ebb60))
+* **main:** Catch all xml API errors ([050ce45b](https://github.com/fvdm/nodejs-toonapi/commit/050ce45b90d1a863040a7204f4ecb398a1bebdd9))
+* **response:**
+  * Default empty body to obj.success true ([3f9dbc63](https://github.com/fvdm/nodejs-toonapi/commit/3f9dbc630abce6a725087993a32762cfcf377ef2))
+  * Default empty body to empty object ([71aad0fc](https://github.com/fvdm/nodejs-toonapi/commit/71aad0fcb0101bfc1f2d998ec3b99fffbbbf33df))
+
+##### Tests
+
+* **main:**
+  * Check data.success value ([abe01f92](https://github.com/fvdm/nodejs-toonapi/commit/abe01f926d957ea1175f914d6adf3851b1889b41))
+  * Added method devices.update ([ac13328a](https://github.com/fvdm/nodejs-toonapi/commit/ac13328a90e1e7b4050991f3f1e52ecec4b15fb5))
+  * Run oauth.getTokenFromPassword after other methods ([09496cab](https://github.com/fvdm/nodejs-toonapi/commit/09496cabe9d6ac6ea6d43372cdfcd47df7fdbad5))
+  * Fixed missing cache object ([80b2deb6](https://github.com/fvdm/nodejs-toonapi/commit/80b2deb6b010040f9f0f1da1d56358690b056e46))
+  * Fixed minor typos ([52781c48](https://github.com/fvdm/nodejs-toonapi/commit/52781c482e78d4674553865f3b8131521ed764da))
+  * Added method devices.device.get test ([4a5a5f07](https://github.com/fvdm/nodejs-toonapi/commit/4a5a5f07e5895327498701deb9373fd28c1131bb))
+  * Check device uuid, cache list ([68ed9610](https://github.com/fvdm/nodejs-toonapi/commit/68ed96101c01024e8a9b968281d4c0dfd4c3470b))
+  * Fixed wrong method name in last commit ([16e2d9b6](https://github.com/fvdm/nodejs-toonapi/commit/16e2d9b66d8efc9e3883b82229ee882ba4ec7189))
+  * Added method devices.list test ([6e77a6ca](https://github.com/fvdm/nodejs-toonapi/commit/6e77a6ca3aae0a8da292ba4aacc2926e0ef54877))
+
 ### 0.2.0 (2016-7-9)
 
 ##### Chores
