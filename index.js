@@ -97,7 +97,7 @@ function httpResponse (err, res, callback) {
 
   // Parse response
   if (!data && res.statusCode === 200) {
-    data = '{}';
+    data = '{ "success": true }';
   }
 
   try {
