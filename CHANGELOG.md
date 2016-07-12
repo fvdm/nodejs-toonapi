@@ -1,3 +1,9 @@
+#### 0.3.1 (2016-7-12)
+
+##### Bug Fixes
+
+* **errors:** Catch all three kinds of xml errors ([6ce10d71](https://github.com/fvdm/nodejs-toonapi/commit/6ce10d71e1f7e285ddc3325c1c3e65de68002d02))
+
 ### 0.3.0 (2016-7-12)
 
 ##### Documentation Changes
