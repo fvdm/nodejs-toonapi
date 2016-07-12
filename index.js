@@ -57,8 +57,10 @@ app.doError = function doError (message, err, res, callback) {
     if (body.match (/^<fault/)) {
       error.message = 'API error';
 
-      body.replace (/<fault xmlns="https:\/\/quby.com"><description>(.+)<\/description><\/fault>$/, function (str, description) {
+      body.replace (/<(amt:|ams:)?fault [^>]+>(<\1code>([^<]+)<\/\1code>)?(<\1message>([^<]+)<\/\1message>)?(<\1description>([^<]+)<\/\1description>)?<\/\1fault>$/, function (str0, str1, str2, code, str4, message, str6, description) {
         error.error = {
+          code,
+          message,
           description
         };
       });
