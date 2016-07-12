@@ -96,6 +96,10 @@ function httpResponse (err, res, callback) {
   }
 
   // Parse response
+  if (!data && res.statusCode === 200) {
+    data = '{}';
+  }
+
   try {
     data = JSON.parse (data);
   } catch (e) {
