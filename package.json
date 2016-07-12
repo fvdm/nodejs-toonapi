@@ -6,7 +6,7 @@
   },
   "name": "toonapi",
   "description": "Quby / Eneco Toon API (unofficial)",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/fvdm/nodejs-toonapi.git"
