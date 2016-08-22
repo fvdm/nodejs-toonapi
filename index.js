@@ -141,14 +141,16 @@ app.httpRequest = function httpRequest (props, callback) {
   };
 
   if (!app.config.endpoint || !app.config.endpoint.match (/^https?:\/\/[\w\d\.]+/)) {
-    return app.doError ('endpoint missing', null, null, callback);
+    app.doError ('endpoint missing', null, null, callback);
+    return;
   }
 
   // we need but don't have an accessToken
   if (!props.noauth && !app.config.accessToken) {
     app.oauth.getTokenFromPassword (function (err, token) {
       if (err) {
-        return callback (err);
+        callback (err);
+        return;
       }
 
       app.config.accessToken = token.access_token;
@@ -184,7 +186,7 @@ app.httpRequest = function httpRequest (props, callback) {
   options.headers ['User-Agent'] = 'node/toonapi (https://github.com/fvdm/nodejs-toonapi)';
   httpreq.doRequest (options, doResponse);
 
-  return null;
+  return;
 };
 
 
