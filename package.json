@@ -20,7 +20,7 @@
     "example.js"
   ],
   "dependencies": {
-    "httpreq": "^0.4.22"
+    "httpreq": "^0.4.23"
   },
   "devDependencies": {
     "dotest": "^1.13.0"
