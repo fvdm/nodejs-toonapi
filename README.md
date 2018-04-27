@@ -10,8 +10,8 @@ Node.js package for Eneco/Quby Toon API (unofficial)
 
 * [Node.js](https://nodejs.org)
 * [Package on npm](https://www.npmjs.com/package/toonapi)
-* [Toon API](https://www.toonapi.com)
-* [API documentation](https://www.toonapi.com/documentation)
+* [Toon API](https://developer.toon.eu)
+* [API documentation](https://developer.toon.eu/toonapi/apis)
 
 
 Beta notice
