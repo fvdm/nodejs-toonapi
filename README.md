@@ -1,6 +1,8 @@
 toonapi
 =======
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/fvdm/nodejs-toonapi.svg)](https://greenkeeper.io/)
+
 Node.js package for Eneco/Quby Toon API (unofficial)
 
 [![npm](https://img.shields.io/npm/v/toonapi.svg?maxAge=300)](https://github.com/fvdm/nodejs-toonapi/blob/master/CHANGELOG.md)
